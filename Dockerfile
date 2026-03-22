@@ -18,4 +18,6 @@ RUN mkdir -p /tmp/ffmpeg-service
 
 EXPOSE 8080
 
+ARG CACHEBUST=1
+
 CMD ["python", "app.py"]
