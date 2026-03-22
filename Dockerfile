@@ -19,10 +19,4 @@ RUN mkdir -p /tmp/ffmpeg-service
 EXPOSE 5000
 
 # gunicorn: 2 workers, 4 threads each, 10-min timeout for long FFmpeg jobs
-CMD ["gunicorn", \
-     "--bind", "0.0.0.0:5000", \
-     "--timeout", "600", \
-     "--workers", "2", \
-     "--threads", "4", \
-     "--worker-class", "gthread", \
-     "app:app"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --timeout 600 --workers 2 --threads 4 --worker-class gthread app:app"]
